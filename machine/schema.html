@@ -1,0 +1,1006 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shema mašine FULL VIDLJIVOST — 122 modula</title>
+<link rel="canonical" href="https://<domain>.pro/full-vidljivost/machine-schema.html">
+<style>
+ :root{color-scheme:dark}
+ *{box-sizing:border-box}
+ body{margin:0;background:#0b1220;color:#e6edf7;font-family:system-ui,Segoe UI,Arial,sans-serif;padding:24px 22px 60px}
+ .okvir{max-width:1280px;margin:0 auto}
+ h1{margin:0 0 6px;font-size:25px}
+ .pod{color:#8fa3bf;font-size:13px;margin:0 0 16px}
+ .stat{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+ .stat span{background:#131d31;border:1px solid #22304a;border-radius:999px;padding:6px 12px;font-size:12.5px;color:#cfe0f5}
+ .stat b{color:#fff}
+ .alati{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+ input#trazi{background:#131d31;border:1px solid #22304a;color:#e6edf7;border-radius:9px;padding:10px 13px;min-width:280px;font-size:14px;outline:none}
+ input#trazi:focus{border-color:#3b82f6}
+ .filter{background:#131d31;border:1px solid #22304a;color:#cfe0f5;border-radius:9px;padding:8px 12px;font-size:12.5px;cursor:pointer}
+ .filter.on{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+ .mreza{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+ .grupa{background:#101a2c;border:1px solid #22304a;border-top:4px solid var(--b);border-radius:12px;padding:14px}
+ .grupa h2{margin:0 0 10px;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;color:#cfe0f5}
+ .pill{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;cursor:pointer;border:1px solid transparent;font-size:12.5px}
+ .pill:hover{background:#16233a;border-color:#2b3d5c}
+ .dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+ .ime{font-family:ui-monospace,Consolas,monospace;color:#9ecbff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .bedz{font-size:9.5px;padding:2px 6px;border-radius:999px;letter-spacing:.03em;font-weight:700}
+ .bedz.novo{background:#7c3aed;color:#fff}
+ .bedz.krug{background:#0e7490;color:#e0f2fe}
+ .bedz.test{background:#166534;color:#dcfce7}
+ .noga{margin-top:22px;color:#7b8ea9;font-size:12px;line-height:1.7;border-top:1px solid #1e2a41;padding-top:12px}
+ /* modal */
+ .zamag{position:fixed;inset:0;background:rgba(4,8,16,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+ .zamag.on{display:flex}
+ .modal{background:#0f1a2c;border:1px solid #2b3d5c;border-radius:14px;max-width:620px;width:100%;padding:22px;position:relative;border-top:4px solid var(--b)}
+ .modal h3{margin:0 0 4px;font-size:19px;font-family:ui-monospace,Consolas,monospace;color:#9ecbff}
+ .modal .put{color:#8fa3bf;font-size:12.5px;margin-bottom:14px}
+ .modal p{margin:0 0 14px;line-height:1.65;color:#dbe6f5}
+ .modal .red{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+ .modal .red span{background:#152036;border:1px solid #26364f;border-radius:8px;padding:6px 10px;font-size:12px;color:#cfe0f5}
+ .zatvori{position:absolute;top:12px;right:14px;background:transparent;border:1px solid #2b3d5c;color:#cfe0f5;border-radius:8px;padding:4px 9px;cursor:pointer}
+ .skriveno{display:none}
+</style></head><body><div class="okvir">
+<h1>Shema mašine FULL VIDLJIVOST</h1>
+<p class="pod">generisano 2026-10-08 iz koda (<code>node shema.mjs</code>) · server: ovaj PC · VPS = čvor za mjerenja</p>
+<div class="stat">
+  <span><b>122</b> modula</span>
+  <span><b>8</b> slojeva</span>
+  <span><b>54</b> u dnevnom krugu</span>
+  <span><b>18</b> novo (Faza 2)</span>
+  <span><b>96</b> pokriveno testom</span>
+    <span><b>15</b> testera/probnih alata (odvojeno)</span>
+  <span>Telegram <b>2/dan</b></span>
+  <span>manifest <b>—</b></span>
+</div>
+<div class="alati">
+  <input id="trazi" placeholder="traži modul (ime ili opis)…">
+  <button class="filter on" data-f="sve">Sve</button>
+  <button class="filter" data-f="ulaz" style="border-color:#2563eb">1  ULAZ I MJERENJA</button><button class="filter" data-f="mozak" style="border-color:#7c3aed">2  MOZAK (odluka)</button><button class="filter" data-f="radnici" style="border-color:#0891b2">3  RADNICI (ko piše)</button><button class="filter" data-f="izlaz" style="border-color:#059669">4  OBJAVA (izlaz na sajt)</button><button class="filter" data-f="dokaz" style="border-color:#d97706">5  DOKAZ I KONTROLA</button><button class="filter" data-f="izvjestaj" style="border-color:#db2777">6  IZVJEŠTAJI I PORTAL</button><button class="filter" data-f="temelj" style="border-color:#475569">7  TEMELJ (lib + baza + okruženje)</button><button class="filter" data-f="roj" style="border-color:#a855f7">8  ROJ (naša mašina uči)</button>
+  <button class="filter" data-f="krug">samo u krugu</button>
+  <button class="filter" data-f="novo">samo novo</button>
+</div>
+<div class="mreza">
+  <div class="grupa" data-grupa="ulaz" style="--b:#2563eb">
+    <h2>1 · ULAZ I MJERENJA · 20</h2>
+      <div class="pill" data-id="analitika.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">analitika.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="planner.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">planner.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="snimak.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">snimak.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/brzina.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">brzina.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/cf-analitika.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">cf-analitika.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/docroot.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">docroot.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/ga4-provjera.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">ga4-provjera.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/ga4-strane.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">ga4-strane.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/geo.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">geo.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/hosting-procesi.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">hosting-procesi.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/indeks.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">indeks.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/konkurencija.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">konkurencija.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/linkovi.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">linkovi.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/logovi.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">logovi.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/oko.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">oko.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/onpage.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">onpage.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/pitanja.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">pitanja.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/schema-valid.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">schema-valid.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/sitemap.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">sitemap.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/www.mjs" data-grupa="ulaz" style="--b:#2563eb">
+        <span class="dot" style="background:#2563eb"></span>
+        <span class="ime">www.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="mozak" style="--b:#7c3aed">
+    <h2>2 · MOZAK (odluka) · 6</h2>
+      <div class="pill" data-id="mozak.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">mozak.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="radar.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">radar.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/modeli.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">modeli.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/onpage-prioritet.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">onpage-prioritet.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/prioritet.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">prioritet.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/radnici-nadzor.mjs" data-grupa="mozak" style="--b:#7c3aed">
+        <span class="dot" style="background:#7c3aed"></span>
+        <span class="ime">radnici-nadzor.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="radnici" style="--b:#0891b2">
+    <h2>3 · RADNICI (ko piše) · 4</h2>
+      <div class="pill" data-id="fabrika.mjs" data-grupa="radnici" style="--b:#0891b2">
+        <span class="dot" style="background:#0891b2"></span>
+        <span class="ime">fabrika.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/alati.mjs" data-grupa="radnici" style="--b:#0891b2">
+        <span class="dot" style="background:#0891b2"></span>
+        <span class="ime">alati.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/kod-queue.mjs" data-grupa="radnici" style="--b:#0891b2">
+        <span class="dot" style="background:#0891b2"></span>
+        <span class="ime">kod-queue.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/radnici.mjs" data-grupa="radnici" style="--b:#0891b2">
+        <span class="dot" style="background:#0891b2"></span>
+        <span class="ime">radnici.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="izlaz" style="--b:#059669">
+    <h2>4 · OBJAVA (izlaz na sajt) · 11</h2>
+      <div class="pill" data-id="kontrola.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">kontrola.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="objava.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">objava.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/hosting-build.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">hosting-build.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/indexnow.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">indexnow.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/localbusiness.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">localbusiness.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/localbusiness2.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">localbusiness2.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/napravi-sitemap.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">napravi-sitemap.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/objava-paket.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">objava-paket.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/objava-sa-dokazom.sh" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">objava-sa-dokazom.sh</span>
+        <span class="bedz novo">NOVO</span>
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/preflight.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">preflight.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/premesti-u-head.mjs" data-grupa="izlaz" style="--b:#059669">
+        <span class="dot" style="background:#059669"></span>
+        <span class="ime">premesti-u-head.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="dokaz" style="--b:#d97706">
+    <h2>5 · DOKAZ I KONTROLA · 11</h2>
+      <div class="pill" data-id="dokaz.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">dokaz.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="nadzor.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">nadzor.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/arhiva.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">arhiva.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/fv-stanje.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">fv-stanje.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/manifest.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">manifest.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/oko-diff.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">oko-diff.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/popravi-objavu.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">popravi-objavu.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/provjeri-objavljeno.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">provjeri-objavljeno.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/testovi.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">testovi.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/trend.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">trend.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/zdravlje.mjs" data-grupa="dokaz" style="--b:#d97706">
+        <span class="dot" style="background:#d97706"></span>
+        <span class="ime">zdravlje.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="izvjestaj" style="--b:#db2777">
+    <h2>6 · IZVJEŠTAJI I PORTAL · 9</h2>
+      <div class="pill" data-id="izvestaj.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">izvestaj.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/dnevnik.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">dnevnik.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/klijent.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">klijent.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/lanac.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">lanac.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/mjesecni.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">mjesecni.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/nedjeljni.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">nedjeljni.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/posalji-izvestaj.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">posalji-izvestaj.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/telegram-dnevni.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">telegram-dnevni.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/zavrsni-izvjestaj.mjs" data-grupa="izvjestaj" style="--b:#db2777">
+        <span class="dot" style="background:#db2777"></span>
+        <span class="ime">zavrsni-izvjestaj.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="temelj" style="--b:#475569">
+    <h2>7 · TEMELJ (lib + baza + okruženje) · 11</h2>
+      <div class="pill" data-id="run-krug.sh" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">run-krug.sh</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="lib/db.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">db.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/deploy.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">deploy.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/ga4.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">ga4.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/gauth-multi.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">gauth-multi.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/gauth.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">gauth.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/gbp.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">gbp.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/gsc.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">gsc.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/http.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">http.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/provere.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">provere.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/uvoz-u-bazu.mjs" data-grupa="temelj" style="--b:#475569">
+        <span class="dot" style="background:#475569"></span>
+        <span class="ime">uvoz-u-bazu.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="roj" style="--b:#a855f7">
+    <h2>8 · ROJ (naša mašina uči) · 2</h2>
+      <div class="pill" data-id="dodaci/roj-stanje.mjs" data-grupa="roj" style="--b:#a855f7">
+        <span class="dot" style="background:#a855f7"></span>
+        <span class="ime">roj-stanje.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/roj-ucenje.mjs" data-grupa="roj" style="--b:#a855f7">
+        <span class="dot" style="background:#a855f7"></span>
+        <span class="ime">roj-ucenje.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+  <div class="grupa" data-grupa="ostalo" style="--b:#64748b"><h2>OSTALO · 48</h2>
+      <div class="pill" data-id="db.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">db.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="deploy.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">deploy.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="fv-status.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">fv-status.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="ga4.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">ga4.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="gauth.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">gauth.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="gbp.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">gbp.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="gsc.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">gsc.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="http.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">http.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="koji-projekat.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">koji-projekat.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="qa-gate.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">qa-gate.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="uvoz-u-bazu.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">uvoz-u-bazu.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/ai-citati-trend.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">ai-citati-trend.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/ai-citati.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">ai-citati.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-audit.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-audit.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-changelog.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-changelog.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-provera.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-provera.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-pseo-mjerenje.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-pseo-mjerenje.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-repo.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-repo.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/dokaz-sve.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">dokaz-sve.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/geo-alat.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">geo-alat.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/gtm-konverzije.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">gtm-konverzije.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/klijenti-kljucevi.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">klijenti-kljucevi.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/konkurencija-upiti.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">konkurencija-upiti.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/kontrola-pokrivenosti.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">kontrola-pokrivenosti.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/mini-alat.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">mini-alat.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/objava-bezbjedno.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objava-bezbjedno.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/objava-javno.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objava-javno.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/objava-live.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objava-live.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/objavi-paket.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objavi-paket.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/objavi-pseo.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objavi-pseo.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/pozicije.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">pozicije.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/pozovi-agenta.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">pozovi-agenta.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/provera-sheme.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">provera-sheme.mjs</span>
+        <span class="bedz novo">NOVO</span>
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/provjeri-canonical-po-jeziku.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">provjeri-canonical-po-jeziku.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/pseo-generator-en.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">pseo-generator-en.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/pseo-generator.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">pseo-generator.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/registruj-hub-mjerenje.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">registruj-hub-mjerenje.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/scrape-intent.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">scrape-intent.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/sitemap-hub.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">sitemap-hub.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/slide-izvjestaj.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">slide-izvjestaj.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        
+      </div>
+      <div class="pill" data-id="dodaci/slika-html.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">slika-html.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/slika-masine.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">slika-masine.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/slika-server.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">slika-server.mjs</span>
+        
+        
+        
+      </div>
+      <div class="pill" data-id="dodaci/testovi-jedinice.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">testovi-jedinice.mjs</span>
+        
+        <span class="bedz krug">KRUG</span>
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="dodaci/vrati-backup.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">vrati-backup.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/gtm.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">gtm.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/objava-wp.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">objava-wp.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+      <div class="pill" data-id="lib/pokrivenost.mjs" data-grupa="ostalo" style="--b:#64748b">
+        <span class="dot" style="background:#64748b"></span>
+        <span class="ime">pokrivenost.mjs</span>
+        
+        
+        <span class="bedz test">TEST</span>
+      </div>
+  </div>
+</div>
+<div class="noga">
+  Klik na modul → opis, gdje živi, da li radi u dnevnom krugu i da li je pokriven testom.<br>
+  <b>NOVO</b> = napravljeno u Fazi 2 (08.10.2026) · <b>KRUG</b> = pokreće se svaki dan · <b>TEST</b> = pokriveno u <code>dodaci/testovi.mjs</code>.<br>
+  Shema se generiše iz koda — ne može da zastari. · <b>Ne diramo sajtove — gradimo dalje mašinu i kod na max.</b>
+</div>
+</div>
+<div class="zamag" id="zamag"><div class="modal" id="modal" style="--b:#2563eb"></div></div>
+<script>
+const PODACI = {"moduli":[{"rel":"analitika.mjs","ime":"analitika.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"KORAK 07:20 — PRAVI BROJEVI (Search Console + GA4 + AI referral)","linija":121,"kb":5.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"db.mjs","ime":"db.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"baza za FULL VIDLJIVOST (SQLite)","linija":149,"kb":5.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"deploy.mjs","ime":"deploy.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"stvarna objava popravke na sajt (SSH/SFTP) + provjera","linija":184,"kb":9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dokaz.mjs","ime":"dokaz.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"KORAK 07:30  (VRIJEDNOST KOJU KLIJENT PLAĆA)","linija":171,"kb":7.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"fabrika.mjs","ime":"fabrika.mjs","grupa":"radnici","grupaNaziv":"3 · RADNICI (ko piše)","boja":"#0891b2","opis":"fabrika.mjs — KORAK 06:40","linija":278,"kb":11.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"fv-status.mjs","ime":"fv-status.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"mali lokalni servis za DSH Centar (tab „FULL VIDLJIVOST\")","linija":178,"kb":7.7,"izmijenjen":"2026-10-07","novo":false,"uKrugu":false,"testiran":false},{"rel":"ga4.mjs","ime":"ga4.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"Google Analytics 4 (service account nmq-eyes) — PRAVI saobraćaj","linija":147,"kb":6.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"gauth.mjs","ime":"gauth.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"Google autentifikacija preko SERVICE ACCOUNT-a (nmq-eyes), bez ikakvih paketa.","linija":90,"kb":3.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"gbp.mjs","ime":"gbp.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"Google Business Profile / Ask Maps provjera","linija":127,"kb":4.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"gsc.mjs","ime":"gsc.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"Google Search Console (service account nmq-eyes) — PRAVI podaci","linija":92,"kb":3.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"http.mjs","ime":"http.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"zajednički HTTP + HTML alati (snimak, merenje, objava)","linija":77,"kb":2.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"izvestaj.mjs","ime":"izvestaj.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"KORAK 07:40  (ONO ŠTO KLIJENT PLAĆA)","linija":166,"kb":7.7,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"koji-projekat.mjs","ime":"koji-projekat.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"za svaki <api-key> ključ: kojem Google projektu pripada + šta je uključeno","linija":52,"kb":2.5,"izmijenjen":"2026-10-06","novo":false,"uKrugu":false,"testiran":false},{"rel":"kontrola.mjs","ime":"kontrola.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"KORAK 07:00  (BLOKADA #2 — da se tuđi sajt NIKAD ne sruši)","linija":121,"kb":5.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"mozak.mjs","ime":"mozak.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"mozak.mjs — KORAK 06:20","linija":116,"kb":5.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"nadzor.mjs","ime":"nadzor.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"BLOKADA #1: „da nešto ne stoji satima a da niko ne zna\"","linija":266,"kb":13.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"objava.mjs","ime":"objava.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"KORAK 07:10  (objava popravki + IndexNow)","linija":197,"kb":9.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"planner.mjs","ime":"planner.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"planner.mjs — KORAK 06:00","linija":112,"kb":4.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"qa-gate.mjs","ime":"qa-gate.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KORAK 06:30  (vrijednost mašine 02 — ANALYTICS)","linija":156,"kb":6.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"radar.mjs","ime":"radar.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"stalno (5 min nedjeljno ručno + automatska provjera)","linija":131,"kb":5.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"run-krug.sh","ime":"run-krug.sh","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"FULL VIDLJIVOST — dnevni krug na VPS-u (radi SVAKI DAN, i vikendom).","linija":214,"kb":12.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"snimak.mjs","ime":"snimak.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"snimak.mjs — KORAK 06:10","linija":116,"kb":4.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"uvoz-u-bazu.mjs","ime":"uvoz-u-bazu.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"uzima izvoz sa VPS-a (JSON: clients, pages, fixes, citations, runs)","linija":68,"kb":2.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/ai-citati-trend.mjs","ime":"ai-citati-trend.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"AI CITATION FREQUENCY kroz dane (5. GEO stub: trend, ne jedan prolaz)","linija":83,"kb":5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":false},{"rel":"dodaci/ai-citati.mjs","ime":"ai-citati.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"5. GEO STUB: **AI citation frequency** (da li nas AI asistenti citiraju)","linija":229,"kb":12.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":false},{"rel":"dodaci/alati.mjs","ime":"alati.mjs","grupa":"radnici","grupaNaziv":"3 · RADNICI (ko piše)","boja":"#0891b2","opis":"MAŠININI ALATI: SEO/GEO poslovi koje mašina radi SAMA (bez vanjskih programa)","linija":129,"kb":7.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/arhiva.mjs","ime":"arhiva.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"PRAVNI DOKAZ PRIJE OBJAVE: HTML + SHA256 + tar za strane koje cekaju objavu (--ceka)","linija":176,"kb":9.8,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/brzina.mjs","ime":"brzina.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"PageSpeed Insights / Core Web Vitals za sve sajtove (BESPLATNO uz PAGESPEED_API_KEY)","linija":87,"kb":5.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/cf-analitika.mjs","ime":"cf-analitika.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"Cloudflare analitika (BESPLATNO): ko stvarno dolazi, koji AI botovi, koji 404","linija":82,"kb":5.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/dnevnik.mjs","ime":"dnevnik.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"DNEVNIK RADA U MAŠINI (šta je mašina uradila, kada i zašto — bez PC-a)","linija":56,"kb":4,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/docroot.mjs","ime":"docroot.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"PROVJERA ZIVE PUTANJE (docroot) za svaki domen: gdje se fajl STVARNO servira.","linija":62,"kb":2.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/dokaz-audit.mjs","ime":"dokaz-audit.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PRIMJER AUDIT IZVJEŠTAJA (ono što kupac dobije za 49 €)","linija":191,"kb":14.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/dokaz-changelog.mjs","ime":"dokaz-changelog.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"CHANGELOG NA ENGLESKOM iz stvarne istorije (dokaz pisane komunikacije)","linija":153,"kb":8.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/dokaz-provera.mjs","ime":"dokaz-provera.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"ČUVAR JAVNOG PAKETA: nijedna tajna ne smije izaći u `dokaz/`","linija":84,"kb":4.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/dokaz-pseo-mjerenje.mjs","ime":"dokaz-pseo-mjerenje.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"MJERENJE pSEO OBJAVE: dnevni snimak + tabela pre/posle za 21 dan","linija":120,"kb":7.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":false},{"rel":"dodaci/dokaz-repo.mjs","ime":"dokaz-repo.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"SKLAPA JAVNI REPO (`full-vidljivost-dokaz`) iz ODOBRENIH dijelova","linija":324,"kb":19.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/dokaz-sve.mjs","ime":"dokaz-sve.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"JEDAN DOKUMENT SA SVIH PROVJERA (dodato 08.10.2026 na zahtjev: „radi sve provere i pravi dokaze\")","linija":160,"kb":11.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/fv-stanje.mjs","ime":"fv-stanje.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"kratko JSON stanje masine (za dnevni pregled): klijenti, strane, popravke po statusu","linija":24,"kb":1.8,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/ga4-provjera.mjs","ime":"ga4-provjera.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"da li GA4 STVARNO radi na sajtu (bez browsera)","linija":60,"kb":3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/ga4-strane.mjs","ime":"ga4-strane.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"KOLIKO PROMETA IDE NA KOJU STRANU (da prioritet bude po parama, ne po redu)","linija":48,"kb":2.8,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/geo-alat.mjs","ime":"geo-alat.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"GRADNJA MINI-ALATA „GEO self-check\" (statički HTML, radi bez servera i bez ključa)","linija":351,"kb":18.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/geo.mjs","ime":"geo.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"GEO (Generative Engine Optimization): da li nas AI asistenti MOGU da čitaju i citiraju","linija":181,"kb":11,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/gtm-konverzije.mjs","ime":"gtm-konverzije.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KONVERZIJE KAO DOGAĐAJI (GA4 Measurement Protocol, server-side)","linija":107,"kb":6.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/hosting-build.mjs","ime":"hosting-build.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"DEPLOY RUKA ZA HOSTINGER (zvanični API) + zaštita od ispada","linija":133,"kb":6.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/hosting-procesi.mjs","ime":"hosting-procesi.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"NADZOR LIMITA NA HOSTINGERU (procesi + THREADOVI) prije nego SSH umre.","linija":65,"kb":4.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/indeks.mjs","ime":"indeks.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"POVRATNA SPREGA: sta Google STVARNO kaze za nase strane (URL Inspection API)","linija":118,"kb":6.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/indexnow.mjs","ime":"indexnow.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"besplatno gura URL-ove u Bing/Yandex (i ostale IndexNow partnere).","linija":85,"kb":4.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/klijent.mjs","ime":"klijent.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"PORTAL ZA KLIJENTA: jedna strana po sajtu (ono što se naplaćuje)","linija":169,"kb":13.2,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/klijenti-kljucevi.mjs","ime":"klijenti-kljucevi.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"DOKAZ IZOLACIJE: koji Google ključ radi za koga","linija":93,"kb":6.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/kod-queue.mjs","ime":"kod-queue.mjs","grupa":"radnici","grupaNaziv":"3 · RADNICI (ko piše)","boja":"#0891b2","opis":"OD NALAZA DO KODA: priprema i isporuka kod-popravki","linija":235,"kb":14.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/konkurencija-upiti.mjs","ime":"konkurencija-upiti.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KONKURENCIJA PO KLJUČNIM RIJEČIMA („kome gubiš poziciju\")","linija":173,"kb":11.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/konkurencija.mjs","ime":"konkurencija.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"nedjeljni diff sitemapa (BESPLATNO): šta je NOVO kod nas i kod konkurencije.","linija":83,"kb":3.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/kontrola-pokrivenosti.mjs","ime":"kontrola-pokrivenosti.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KONTROLA KOJA PITA „DA LI JE POSAO UOPŠTE URAĐEN\"","linija":158,"kb":8.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":false},{"rel":"dodaci/lanac.mjs","ime":"lanac.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"DOKAZ DA LANAC RADI (naših 5 sajtova) → Telegram + reports/lanac-\u003cdan>.md","linija":189,"kb":11.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/linkovi.mjs","ime":"linkovi.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"UNUTRAŠNJI LINKOVI, ORPHAN STRANE I PREDLOG LINKOVA (ono što nijedno mjerenje ne vidi)","linija":142,"kb":8.5,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/localbusiness.mjs","ime":"localbusiness.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"LocalBusiness / Organization schema (JSON-LD) za lokalne klijente.","linija":50,"kb":2.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/localbusiness2.mjs","ime":"localbusiness2.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"puni LocalBusiness schema podacima IZVUČENIM IZ SAJTA (bez ikakvog API-ja):","linija":67,"kb":3.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/logovi.mjs","ime":"logovi.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"CRAWL LOGOVI: ko stvarno dolazi, šta Google traži, gdje se baca budžet","linija":88,"kb":5.7,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/manifest.mjs","ime":"manifest.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"JEDAN IZVOR ISTINE: otisak (md5) svih fajlova mašine + šta se promijenilo.","linija":67,"kb":3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/mini-alat.mjs","ime":"mini-alat.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"MINI-ALATI ZA SAOBRAĆAJ („find and create mini-tools that drive traffic\")","linija":135,"kb":8.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/mjesecni.mjs","ime":"mjesecni.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"MJESEČNI IZVJEŠTAJ (HTML, za klijenta / za prodaju mašine)","linija":135,"kb":9.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/modeli.mjs","ime":"modeli.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"REGISTAR LOKALNIH MODELA: koji model za koji posao (sve naše, sve $0)","linija":123,"kb":7.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/napravi-sitemap.mjs","ime":"napravi-sitemap.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"napravi sitemap.xml (i robots.txt ako fali) za domen bez sitemape.","linija":97,"kb":4.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/nedjeljni.mjs","ime":"nedjeljni.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"NEDJELJNI IZVJEŠTAJ (7 dana: šta se popravilo, šta raste, šta pada)","linija":90,"kb":6.3,"izmijenjen":"2026-10-08","novo":true,"uKrugu":false,"testiran":true},{"rel":"dodaci/objava-bezbjedno.mjs","ime":"objava-bezbjedno.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"SIGURNA OBJAVA (privremeni alat, pokreće se RUČNO kad se nešto ubacuje)","linija":204,"kb":11.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/objava-javno.mjs","ime":"objava-javno.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PRIPREMA JAVNOG PAKETA ZA OBJAVU (ništa ne objavljuje samo!)","linija":332,"kb":19.7,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/objava-live.mjs","ime":"objava-live.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"JEDAN POTEZ ZA OBJAVU + MJERENJE (radi SAMO kad korisnik kaže \"objavi\")","linija":122,"kb":6.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/objava-paket.mjs","ime":"objava-paket.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"paketna objava popravki (status 'ceka') uz filter, dedup, provjeru i rollback.","linija":134,"kb":8.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/objava-sa-dokazom.sh","ime":"objava-sa-dokazom.sh","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"OBJAVA SA PRAVNIM DOKAZOM","linija":46,"kb":1.7,"izmijenjen":"2026-10-08","novo":true,"uKrugu":false,"testiran":false},{"rel":"dodaci/objavi-paket.mjs","ime":"objavi-paket.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"OBJAVA CIJELOG PAKETA na domen (uz provjeru svakog fajla i rollback)","linija":126,"kb":7.7,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/objavi-pseo.mjs","ime":"objavi-pseo.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"OBJAVA pSEO STRANA na domen (u pravu strukturu, sa sitemap-om)","linija":154,"kb":9.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/oko-diff.mjs","ime":"oko-diff.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"PRIJE/POSLIJE U SLIKAMA + JEDNA REČENICA ZA KLIJENTA","linija":107,"kb":6.2,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/oko.mjs","ime":"oko.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"MAŠINA GLEDA SAJT: snimak ekrana + vizuelna provjera (bez ijednog vanjskog programa)","linija":122,"kb":7.7,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/onpage-prioritet.mjs","ime":"onpage-prioritet.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"MASINSKI PRIORITET ON-PAGE PROBLEMA (bez nagadjanja)","linija":89,"kb":5.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/onpage.mjs","ime":"onpage.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"MJERENJE SAME STRANE: canonical, noindex, meta opis, H1, JSON-LD (+ da li canonical pokazuje na sebe).","linija":148,"kb":10.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/pitanja.mjs","ime":"pitanja.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"Google autocomplete + PAA harvesting (BESPLATNO, bez ključa).","linija":69,"kb":4.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/popravi-objavu.mjs","ime":"popravi-objavu.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"tri popravke u jednom hodу:","linija":101,"kb":5.8,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/posalji-izvestaj.mjs","ime":"posalji-izvestaj.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"šalje izvještaj mejlom (bez dodatnih paketa: sopstveni SMTP klijent).","linija":143,"kb":8.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/pozicije.mjs","ime":"pozicije.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PRAĆENJE POZICIJA KROZ VRIJEME (dodato 08.10.2026)","linija":199,"kb":11.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/pozovi-agenta.mjs","ime":"pozovi-agenta.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"MAŠINA TRAŽI POMOĆ kad joj nešto padne (dodato 08.10.2026)","linija":191,"kb":12.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/preflight.mjs","ime":"preflight.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"PRIJE objave: sta se STVARNO moze objaviti, a sta ne (i zasto).","linija":112,"kb":5.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/premesti-u-head.mjs","ime":"premesti-u-head.mjs","grupa":"izlaz","grupaNaziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669","opis":"POPRAVKA: premesti NMQ-FIX blokove sa canonical/meta iz \u003cbody> u \u003chead>.","linija":67,"kb":3.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/prioritet.mjs","ime":"prioritet.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"RANG LISTA POSLA: sta prvo raditi, po UTICAJU (ne po redu u bazi).","linija":168,"kb":10.7,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/provera-sheme.mjs","ime":"provera-sheme.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PRIJE KRUGA: koliko modula je pokriveno (i da li se nešto POKVARILO)","linija":65,"kb":4.1,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":false},{"rel":"dodaci/provjeri-canonical-po-jeziku.mjs","ime":"provjeri-canonical-po-jeziku.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"verifikacija koju je korisnik tražio (08.10.2026):","linija":25,"kb":1.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/provjeri-objavljeno.mjs","ime":"provjeri-objavljeno.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"DOKAZ: da li je \"objavljeno\" STVARNO na živom sajtu","linija":112,"kb":6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/pseo-generator-en.mjs","ime":"pseo-generator-en.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"ENGLESKA programska potražnja → strana (isti kvalitet kao SR, EN tržište)","linija":247,"kb":15.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/pseo-generator.mjs","ime":"pseo-generator.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PROGRAMMATIC SEO: 50+ strana iz šablona (pipeline, ne članci jedan po jedan)","linija":231,"kb":13.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/radnici-nadzor.mjs","ime":"radnici-nadzor.mjs","grupa":"mozak","grupaNaziv":"2 · MOZAK (odluka)","boja":"#7c3aed","opis":"NE DA SE KRUG ZAUSTAVI zbog modela","linija":108,"kb":4.9,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/radnici.mjs","ime":"radnici.mjs","grupa":"radnici","grupaNaziv":"3 · RADNICI (ko piše)","boja":"#0891b2","opis":"BAZEN RADNIKA: mašina bira najboljeg izvođača za posao","linija":154,"kb":10.7,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/registruj-hub-mjerenje.mjs","ime":"registruj-hub-mjerenje.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"registracija HUB strana u mjerenje (clean URL)","linija":52,"kb":2.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/roj-stanje.mjs","ime":"roj-stanje.mjs","grupa":"roj","grupaNaziv":"8 · ROJ (naša mašina uči)","boja":"#a855f7","opis":"ROJ JE DIO NAŠE MAŠINE (ne tuđi servis)","linija":132,"kb":8.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/roj-ucenje.mjs","ime":"roj-ucenje.mjs","grupa":"roj","grupaNaziv":"8 · ROJ (naša mašina uči)","boja":"#a855f7","opis":"MAŠINA UČI ROJ (dodato 08.10.2026: „stavi da robotici uče, moj roj je spreman\")","linija":197,"kb":13.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/schema-valid.mjs","ime":"schema-valid.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"VALIDACIJA STRUKTURIRANIH PODATAKA (ne samo \"ima li ih\", nego \"da li valjaju\")","linija":115,"kb":7.4,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/scrape-intent.mjs","ime":"scrape-intent.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"INTENT SIGNALI I WARM LEADOVI (scraping + enrichment, bez plaćenih ključeva)","linija":141,"kb":9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/sitemap-hub.mjs","ime":"sitemap-hub.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"SITEMAP ZA JAVNI DOKAZ (`/full-vidljivost/`) + prijava u robots.txt i GSC","linija":114,"kb":6.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/sitemap.mjs","ime":"sitemap.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"OTKRIVANJE: prijava sitemapa u Google Search Console (i pregled statusa)","linija":115,"kb":6.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/slide-izvjestaj.mjs","ime":"slide-izvjestaj.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"5 SLAJDOVA umjesto .md fajla (KMC traži „slide-based reports\")","linija":179,"kb":11.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":false},{"rel":"dodaci/slika-html.mjs","ime":"slika-html.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"ŽIVA „KOMPLETNA SLIKA MAŠINE\" (HTML se puni iz JSON-a, ne iz snimka)","linija":373,"kb":23,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/slika-masine.mjs","ime":"slika-masine.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KOMPLETNA SLIKA MAŠINE (jedan dokument, iz stvarnih podataka)","linija":169,"kb":11.6,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/slika-server.mjs","ime":"slika-server.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"mali lokalni server za ŽIVU „Kompletnu sliku mašine\"","linija":55,"kb":2.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":false},{"rel":"dodaci/telegram-dnevni.mjs","ime":"telegram-dnevni.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"TAČNO DVIJE PORUKE DNEVNO: jedna pozitivna, jedna negativna","linija":159,"kb":10.4,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/testovi-jedinice.mjs","ime":"testovi-jedinice.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"PRAVI TESTOVI PONAŠANJA (lokalno, bez ijednog zahtjeva prema živim sajtovima)","linija":273,"kb":18.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/testovi.mjs","ime":"testovi.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"TESTOVI MAŠINE (bez mreže, bez baze, ~1 sekunda)","linija":254,"kb":15.1,"izmijenjen":"2026-10-08","novo":true,"uKrugu":true,"testiran":true},{"rel":"dodaci/trend.mjs","ime":"trend.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"TRENDOVI I ALARMI NA PAD (ono što mjerenja pretvara u odluku)","linija":139,"kb":8.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/vrati-backup.mjs","ime":"vrati-backup.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"RUČNI ROLLBACK: vrati ŽIVU stranu na stanje iz najnovijeg serverskog backup-a.","linija":36,"kb":2.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"dodaci/www.mjs","ime":"www.mjs","grupa":"ulaz","grupaNaziv":"1 · ULAZ I MJERENJA","boja":"#2563eb","opis":"DETEKCIJA www/bez-www duplikacije (i predlog 301 preusmjerenja).","linija":107,"kb":6.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/zavrsni-izvjestaj.mjs","ime":"zavrsni-izvjestaj.mjs","grupa":"izvjestaj","grupaNaziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777","opis":"JEDAN IZVJEŠTAJ: SEO + GEO + analitika + automatika (skor po sajtu)","linija":182,"kb":11.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"dodaci/zdravlje.mjs","ime":"zdravlje.mjs","grupa":"dokaz","grupaNaziv":"5 · DOKAZ I KONTROLA","boja":"#d97706","opis":"SAMOPROVJERA MAŠINE: da li su svi dijelovi tu, da li su koraci svježi i gdje je granica.","linija":121,"kb":7.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":true,"testiran":true},{"rel":"lib/db.mjs","ime":"db.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"baza za FULL VIDLJIVOST (SQLite)","linija":149,"kb":5.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/deploy.mjs","ime":"deploy.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"stvarna objava popravke na sajt (SSH/SFTP) + provjera","linija":263,"kb":13.1,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/ga4.mjs","ime":"ga4.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"Google Analytics 4 (service account nmq-eyes) — PRAVI saobraćaj","linija":166,"kb":7.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/gauth-multi.mjs","ime":"gauth-multi.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"KLJUČEVI PO KLIJENTU (spremno za više klijenata bez restarta)","linija":112,"kb":4.2,"izmijenjen":"2026-10-08","novo":true,"uKrugu":false,"testiran":true},{"rel":"lib/gauth.mjs","ime":"gauth.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"Google autentifikacija preko SERVICE ACCOUNT-a (nmq-eyes), bez ikakvih paketa.","linija":99,"kb":4.2,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/gbp.mjs","ime":"gbp.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"Google Business Profile / Ask Maps provjera","linija":127,"kb":4.9,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/gsc.mjs","ime":"gsc.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"Google Search Console (service account nmq-eyes) — PRAVI podaci","linija":96,"kb":4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/gtm.mjs","ime":"gtm.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"KONVERZIJE (GTM/GA4) + plan praćenja. Bez izmišljanja: što se ne može izmjeriti — kaže se.","linija":108,"kb":6.5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/http.mjs","ime":"http.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"zajednički HTTP + HTML alati (snimak, merenje, objava)","linija":120,"kb":5,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/objava-wp.mjs","ime":"objava-wp.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"CMS ADAPTERI: WordPress (REST) i Webflow. „No manual uploads.\"","linija":74,"kb":5.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/pokrivenost.mjs","ime":"pokrivenost.mjs","grupa":"ostalo","grupaNaziv":"OSTALO","boja":"#64748b","opis":"POKRIVENOST MODULA (jedan izvor istine za shemu i za provjeru)","linija":147,"kb":10.4,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true},{"rel":"lib/provere.mjs","ime":"provere.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"ČISTE PROVJERE (bez mreže i bez baze) — jedno mjesto, testabilno","linija":172,"kb":9.6,"izmijenjen":"2026-10-08","novo":true,"uKrugu":false,"testiran":true},{"rel":"lib/uvoz-u-bazu.mjs","ime":"uvoz-u-bazu.mjs","grupa":"temelj","grupaNaziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569","opis":"uzima izvoz sa VPS-a (JSON: clients, pages, fixes, citations, runs)","linija":68,"kb":2.3,"izmijenjen":"2026-10-08","novo":false,"uKrugu":false,"testiran":true}],"grupe":[{"id":"ulaz","naziv":"1 · ULAZ I MJERENJA","boja":"#2563eb"},{"id":"mozak","naziv":"2 · MOZAK (odluka)","boja":"#7c3aed"},{"id":"radnici","naziv":"3 · RADNICI (ko piše)","boja":"#0891b2"},{"id":"izlaz","naziv":"4 · OBJAVA (izlaz na sajt)","boja":"#059669"},{"id":"dokaz","naziv":"5 · DOKAZ I KONTROLA","boja":"#d97706"},{"id":"izvjestaj","naziv":"6 · IZVJEŠTAJI I PORTAL","boja":"#db2777"},{"id":"temelj","naziv":"7 · TEMELJ (lib + baza + okruženje)","boja":"#475569"},{"id":"roj","naziv":"8 · ROJ (naša mašina uči)","boja":"#a855f7"}],"dan":"2026-10-08","otisak":"—","stanje":{"clients":11,"pages":178,"fixes":{"ceka":102,"duplikat":66,"kod-spreman":136,"nadjeno":54,"objavljeno":38,"ponisteno":3,"za-kod":145},"zadnjiKrug":"2026-10-08","prosjek":62,"skor":[{"domen":"<domain>.com","skor":75},{"domen":"<domain>.pro","skor":71},{"domen":"<domain>.com","skor":63},{"domen":"<domain>.pro","skor":54},{"domen":"<domain>.com","skor":45}],"geoProsjek":86,"at":"2026-10-08T18:54:40.974Z"}};
+const poId = new Map(PODACI.moduli.map((m) => [m.rel, m]));
+const trazi = document.getElementById('trazi');
+const zamag = document.getElementById('zamag');
+const modal = document.getElementById('modal');
+let filter = 'sve';
+
+function primijeni() {
+  const q = trazi.value.trim().toLowerCase();
+  document.querySelectorAll('.grupa').forEach((g) => {
+    let vidljivo = 0;
+    g.querySelectorAll('.pill').forEach((p) => {
+      const m = poId.get(p.dataset.id);
+      const tekst = (m.ime + ' ' + m.opis).toLowerCase();
+      let ok = !q || tekst.includes(q);
+      if (ok && filter === 'krug') ok = m.uKrugu;
+      if (ok && filter === 'novo') ok = m.novo;
+      if (ok && ['ulaz','mozak','radnici','izlaz','dokaz','izvjestaj','temelj'].includes(filter)) ok = m.grupa === filter;
+      p.classList.toggle('skriveno', !ok);
+      if (ok) vidljivo++;
+    });
+    g.classList.toggle('skriveno', vidljivo === 0);
+  });
+}
+trazi.addEventListener('input', primijeni);
+document.querySelectorAll('.filter').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter').forEach((x) => x.classList.remove('on'));
+  b.classList.add('on');
+  filter = b.dataset.f;
+  primijeni();
+}));
+
+document.addEventListener('click', (e) => {
+  const p = e.target.closest('.pill');
+  if (p) {
+    const m = poId.get(p.dataset.id);
+    if (!m) return;
+    modal.style.setProperty('--b', m.boja);
+    modal.innerHTML = '<button class="zatvori" onclick="document.getElementById(\'zamag\').classList.remove(\'on\')">zatvori ✕</button>'
+      + '<h3>' + m.ime + '</h3>'
+      + '<div class="put">' + m.rel + ' · ' + PODACI.grupe.find((g) => g.id === m.grupa)?.naziv + (m.grupa === 'ostalo' ? 'OSTALO' : '') + '</div>'
+      + '<div class="red">'
+      + (m.novo ? '<span style="border-color:#7c3aed">NOVO · Faza 2</span>' : '')
+      + (m.uKrugu ? '<span style="border-color:#0e7490">radi u dnevnom krugu</span>' : '<span>pokreće se ručno</span>')
+      + (m.testiran ? '<span style="border-color:#166534">pokriven testom</span>' : '<span>bez testa</span>')
+      + '</div>'
+      + '<p>' + m.opis + '</p>'
+      + '<div class="red"><span>' + m.linija + ' linija</span><span>' + m.kb + ' KB</span><span>izmijenjen ' + m.izmijenjen + '</span></div>';
+    zamag.classList.add('on');
+  }
+  if (e.target === zamag) zamag.classList.remove('on');
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') zamag.classList.remove('on'); });
+</script></body></html>

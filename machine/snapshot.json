@@ -1,0 +1,998 @@
+{
+ "at": "2026-10-08T18:58:39.677Z",
+ "dan": "2026-10-08",
+ "git": "d24bb9a",
+ "ukupno": {
+  "modula": 122,
+  "uKrugu": 54,
+  "zakazano": 10,
+  "testirano": 96,
+  "bezOpisa": 0,
+  "rucno": 39
+ },
+ "testovi": {
+  "ukupno": 171,
+  "palo": 0,
+  "proslo": 171,
+  "suite": [
+   {
+    "ime": "testovi",
+    "modul": "dodaci/testovi.mjs",
+    "dokaz": "dokaz-testovi-2026-10-08.json",
+    "ukupno": 58,
+    "proslo": 58,
+    "palo": 0,
+    "dan": "2026-10-08"
+   },
+   {
+    "ime": "testovi-jedinice",
+    "modul": "dodaci/testovi-jedinice.mjs",
+    "dokaz": "dokaz-testovi-2026-10-08.json",
+    "ukupno": 58,
+    "proslo": 58,
+    "palo": 0,
+    "dan": "2026-10-08"
+   },
+   {
+    "ime": "test-objava-tok",
+    "modul": "dodaci/test-objava-tok.mjs",
+    "dokaz": "dokaz-objava-tok-2026-10-08.json",
+    "ukupno": 35,
+    "proslo": 35,
+    "palo": 0,
+    "dan": "2026-10-08"
+   },
+   {
+    "ime": "test-repo-tok",
+    "modul": "dodaci/test-repo-tok.mjs",
+    "dokaz": "dokaz-repo-tok-2026-10-08.json",
+    "ukupno": 20,
+    "proslo": 20,
+    "palo": 0,
+    "dan": "2026-10-08"
+   }
+  ],
+  "sekcije": 5,
+  "izvor": [
+   "dokaz-testovi-2026-10-08.json",
+   "dokaz-testovi-2026-10-08.json",
+   "dokaz-objava-tok-2026-10-08.json",
+   "dokaz-repo-tok-2026-10-08.json"
+  ]
+ },
+ "krug": {
+  "trajanjeMin": 21,
+  "greske": null,
+  "pocetak": "14:46",
+  "kraj": "15:07"
+ },
+ "slojevi": {
+  "1 · ULAZ I MJERENJA": {
+   "modula": 20,
+   "krug": 17,
+   "zakazano": 2,
+   "test": 20,
+   "fajlovi": [
+    {
+     "rel": "analitika.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.3
+    },
+    {
+     "rel": "dodaci/brzina.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.3
+    },
+    {
+     "rel": "dodaci/cf-analitika.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.8
+    },
+    {
+     "rel": "dodaci/docroot.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.8
+    },
+    {
+     "rel": "dodaci/ga4-provjera.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 3
+    },
+    {
+     "rel": "dodaci/ga4-strane.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.8
+    },
+    {
+     "rel": "dodaci/geo.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 11
+    },
+    {
+     "rel": "dodaci/hosting-procesi.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.1
+    },
+    {
+     "rel": "dodaci/indeks.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.1
+    },
+    {
+     "rel": "dodaci/konkurencija.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 3.9
+    },
+    {
+     "rel": "dodaci/linkovi.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.5
+    },
+    {
+     "rel": "dodaci/logovi.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.7
+    },
+    {
+     "rel": "dodaci/oko.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.7
+    },
+    {
+     "rel": "dodaci/onpage.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 10.2
+    },
+    {
+     "rel": "dodaci/pitanja.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 4.4
+    },
+    {
+     "rel": "dodaci/schema-valid.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.4
+    },
+    {
+     "rel": "dodaci/sitemap.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.4
+    },
+    {
+     "rel": "dodaci/www.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.5
+    },
+    {
+     "rel": "planner.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.4
+    },
+    {
+     "rel": "snimak.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.4
+    }
+   ]
+  },
+  "OSTALO": {
+   "modula": 48,
+   "krug": 10,
+   "zakazano": 3,
+   "test": 24,
+   "fajlovi": [
+    {
+     "rel": "db.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.4
+    },
+    {
+     "rel": "deploy.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 9
+    },
+    {
+     "rel": "dodaci/ai-citati-trend.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 5
+    },
+    {
+     "rel": "dodaci/ai-citati.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 12.5
+    },
+    {
+     "rel": "dodaci/dokaz-audit.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 14.3
+    },
+    {
+     "rel": "dodaci/dokaz-changelog.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 8.5
+    },
+    {
+     "rel": "dodaci/dokaz-provera.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 4.5
+    },
+    {
+     "rel": "dodaci/dokaz-pseo-mjerenje.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 7.2
+    },
+    {
+     "rel": "dodaci/dokaz-repo.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 19.5
+    },
+    {
+     "rel": "dodaci/dokaz-sve.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 11.2
+    },
+    {
+     "rel": "dodaci/geo-alat.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 18.8
+    },
+    {
+     "rel": "dodaci/gtm-konverzije.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 6.2
+    },
+    {
+     "rel": "dodaci/klijenti-kljucevi.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 6.2
+    },
+    {
+     "rel": "dodaci/konkurencija-upiti.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 11.4
+    },
+    {
+     "rel": "dodaci/kontrola-pokrivenosti.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 8.8
+    },
+    {
+     "rel": "dodaci/mini-alat.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.3
+    },
+    {
+     "rel": "dodaci/objava-bezbjedno.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.8
+    },
+    {
+     "rel": "dodaci/objava-javno.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 19.7
+    },
+    {
+     "rel": "dodaci/objava-live.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 6.6
+    },
+    {
+     "rel": "dodaci/objavi-paket.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 7.7
+    },
+    {
+     "rel": "dodaci/objavi-pseo.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 9.5
+    },
+    {
+     "rel": "dodaci/pozicije.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.4
+    },
+    {
+     "rel": "dodaci/pozovi-agenta.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 12.3
+    },
+    {
+     "rel": "dodaci/provera-sheme.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 4.1
+    },
+    {
+     "rel": "dodaci/provjeri-canonical-po-jeziku.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 1.4
+    },
+    {
+     "rel": "dodaci/pseo-generator-en.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 15.1
+    },
+    {
+     "rel": "dodaci/pseo-generator.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 13.9
+    },
+    {
+     "rel": "dodaci/registruj-hub-mjerenje.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 2.5
+    },
+    {
+     "rel": "dodaci/scrape-intent.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 9
+    },
+    {
+     "rel": "dodaci/sitemap-hub.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 6.4
+    },
+    {
+     "rel": "dodaci/slide-izvjestaj.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": false,
+     "kb": 11.9
+    },
+    {
+     "rel": "dodaci/slika-html.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 23
+    },
+    {
+     "rel": "dodaci/slika-masine.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.6
+    },
+    {
+     "rel": "dodaci/slika-server.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 2.4
+    },
+    {
+     "rel": "dodaci/testovi-jedinice.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 18.9
+    },
+    {
+     "rel": "dodaci/vrati-backup.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.3
+    },
+    {
+     "rel": "fv-status.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 7.7
+    },
+    {
+     "rel": "ga4.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.3
+    },
+    {
+     "rel": "gauth.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 3.4
+    },
+    {
+     "rel": "gbp.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.9
+    },
+    {
+     "rel": "gsc.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 3.6
+    },
+    {
+     "rel": "http.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.9
+    },
+    {
+     "rel": "koji-projekat.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 2.5
+    },
+    {
+     "rel": "lib/gtm.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.5
+    },
+    {
+     "rel": "lib/objava-wp.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.4
+    },
+    {
+     "rel": "lib/pokrivenost.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 10.4
+    },
+    {
+     "rel": "qa-gate.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.5
+    },
+    {
+     "rel": "uvoz-u-bazu.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.3
+    }
+   ]
+  },
+  "5 · DOKAZ I KONTROLA": {
+   "modula": 11,
+   "krug": 10,
+   "zakazano": 0,
+   "test": 11,
+   "fajlovi": [
+    {
+     "rel": "dodaci/arhiva.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 9.8
+    },
+    {
+     "rel": "dodaci/fv-stanje.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 1.8
+    },
+    {
+     "rel": "dodaci/manifest.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 3
+    },
+    {
+     "rel": "dodaci/oko-diff.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.2
+    },
+    {
+     "rel": "dodaci/popravi-objavu.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.8
+    },
+    {
+     "rel": "dodaci/provjeri-objavljeno.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6
+    },
+    {
+     "rel": "dodaci/testovi.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 15.1
+    },
+    {
+     "rel": "dodaci/trend.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.4
+    },
+    {
+     "rel": "dodaci/zdravlje.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.2
+    },
+    {
+     "rel": "dokaz.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.6
+    },
+    {
+     "rel": "nadzor.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 13.5
+    }
+   ]
+  },
+  "3 · RADNICI (ko piše)": {
+   "modula": 4,
+   "krug": 2,
+   "zakazano": 0,
+   "test": 4,
+   "fajlovi": [
+    {
+     "rel": "dodaci/alati.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.9
+    },
+    {
+     "rel": "dodaci/kod-queue.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 14.1
+    },
+    {
+     "rel": "dodaci/radnici.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 10.7
+    },
+    {
+     "rel": "fabrika.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.8
+    }
+   ]
+  },
+  "6 · IZVJEŠTAJI I PORTAL": {
+   "modula": 9,
+   "krug": 7,
+   "zakazano": 2,
+   "test": 9,
+   "fajlovi": [
+    {
+     "rel": "dodaci/dnevnik.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 4
+    },
+    {
+     "rel": "dodaci/klijent.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 13.2
+    },
+    {
+     "rel": "dodaci/lanac.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.3
+    },
+    {
+     "rel": "dodaci/mjesecni.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 9.1
+    },
+    {
+     "rel": "dodaci/nedjeljni.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 6.3
+    },
+    {
+     "rel": "dodaci/posalji-izvestaj.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.2
+    },
+    {
+     "rel": "dodaci/telegram-dnevni.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 10.4
+    },
+    {
+     "rel": "dodaci/zavrsni-izvjestaj.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 11.9
+    },
+    {
+     "rel": "izvestaj.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.7
+    }
+   ]
+  },
+  "4 · OBJAVA (izlaz na sajt)": {
+   "modula": 11,
+   "krug": 3,
+   "zakazano": 1,
+   "test": 10,
+   "fajlovi": [
+    {
+     "rel": "dodaci/hosting-build.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 6.4
+    },
+    {
+     "rel": "dodaci/indexnow.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 4.9
+    },
+    {
+     "rel": "dodaci/localbusiness.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.8
+    },
+    {
+     "rel": "dodaci/localbusiness2.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 3.8
+    },
+    {
+     "rel": "dodaci/napravi-sitemap.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.8
+    },
+    {
+     "rel": "dodaci/objava-paket.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.5
+    },
+    {
+     "rel": "dodaci/objava-sa-dokazom.sh",
+     "krug": false,
+     "zakazano": false,
+     "test": false,
+     "kb": 1.7
+    },
+    {
+     "rel": "dodaci/preflight.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.9
+    },
+    {
+     "rel": "dodaci/premesti-u-head.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 3.6
+    },
+    {
+     "rel": "kontrola.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.2
+    },
+    {
+     "rel": "objava.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 9.4
+    }
+   ]
+  },
+  "2 · MOZAK (odluka)": {
+   "modula": 6,
+   "krug": 5,
+   "zakazano": 1,
+   "test": 6,
+   "fajlovi": [
+    {
+     "rel": "dodaci/modeli.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.5
+    },
+    {
+     "rel": "dodaci/onpage-prioritet.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.4
+    },
+    {
+     "rel": "dodaci/prioritet.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 10.7
+    },
+    {
+     "rel": "dodaci/radnici-nadzor.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.9
+    },
+    {
+     "rel": "mozak.mjs",
+     "krug": true,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.3
+    },
+    {
+     "rel": "radar.mjs",
+     "krug": false,
+     "zakazano": true,
+     "test": true,
+     "kb": 5.9
+    }
+   ]
+  },
+  "7 · TEMELJ (lib + baza + okruženje)": {
+   "modula": 11,
+   "krug": 0,
+   "zakazano": 1,
+   "test": 10,
+   "fajlovi": [
+    {
+     "rel": "lib/db.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 5.4
+    },
+    {
+     "rel": "lib/deploy.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 13.1
+    },
+    {
+     "rel": "lib/ga4.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 7.4
+    },
+    {
+     "rel": "lib/gauth-multi.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.2
+    },
+    {
+     "rel": "lib/gauth.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.2
+    },
+    {
+     "rel": "lib/gbp.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4.9
+    },
+    {
+     "rel": "lib/gsc.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 4
+    },
+    {
+     "rel": "lib/http.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 5
+    },
+    {
+     "rel": "lib/provere.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 9.6
+    },
+    {
+     "rel": "lib/uvoz-u-bazu.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 2.3
+    },
+    {
+     "rel": "run-krug.sh",
+     "krug": false,
+     "zakazano": true,
+     "test": false,
+     "kb": 12.4
+    }
+   ]
+  },
+  "8 · ROJ (naša mašina uči)": {
+   "modula": 2,
+   "krug": 0,
+   "zakazano": 0,
+   "test": 2,
+   "fajlovi": [
+    {
+     "rel": "dodaci/roj-stanje.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 8.6
+    },
+    {
+     "rel": "dodaci/roj-ucenje.mjs",
+     "krug": false,
+     "zakazano": false,
+     "test": true,
+     "kb": 13.6
+    }
+   ]
+  }
+ },
+ "_napomena": "snapshot mašine; opisi modula su izostavljeni (javni repo sadrži strukturu i brojke, ne interni sadržaj)"
+}

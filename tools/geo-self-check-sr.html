@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEO self-check — <domain>.pro</title>
+<link rel="canonical" href="https://<domain>.pro/full-vidljivost/geo-self-check-sr.html">
+<meta name="description" content="Da li vas AI asistenti (ChatGPT, Gemini, Perplexity) mogu pročitati, razumjeti i citirati?">
+<style>
+:root{--bg:#0b0b0d;--surf:#141417;--surf2:#1c1c21;--bord:#2a2a31;--txt:#ededf0;--mut:#9a9aa5;--ok:#10b981;--bad:#ef4444;--mid:#eab308;--acc:#2563eb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:22px;margin:0 0 6px}
+.sub{color:var(--mut);margin:0 0 18px}
+.uvod{background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:14px;color:var(--mut);font-size:13px;margin-bottom:18px}
+.q{display:flex;gap:12px;align-items:flex-start;background:var(--surf);border:1px solid var(--bord);border-radius:12px;padding:13px 14px;margin-bottom:8px;cursor:pointer}
+.q:hover{border-color:#3a3a46}
+.q input{margin-top:3px;width:18px;height:18px;accent-color:var(--acc);flex:none;cursor:pointer}
+.q .stub{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);margin-bottom:2px}
+.q span.txt{display:block}
+button{font:inherit;border-radius:10px;border:1px solid var(--bord);background:var(--surf2);color:var(--txt);padding:11px 16px;cursor:pointer}
+button.prim{background:#fff;color:#000;border-color:#fff;font-weight:600}
+button:hover{opacity:.92}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+#rezultat{display:none;margin-top:24px}
+.skor{font-size:46px;font-weight:700;line-height:1;letter-spacing:-.03em}
+.skok{color:var(--ok)}.slosije{color:var(--bad)}.sosrednji{color:var(--mid)}
+.card{background:var(--surf);border:1px solid var(--bord);border-radius:14px;padding:16px;margin-top:14px}
+.bar{height:8px;border-radius:99px;background:var(--surf2);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--acc)}
+.stubrow{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-top:12px}
+ul{margin:8px 0 0;padding-left:20px}
+li{margin-bottom:6px}
+.cta{background:linear-gradient(180deg,#12233f,#0d1526);border:1px solid #234;border-radius:14px;padding:18px;margin-top:20px}
+.cta h2{margin:0 0 6px;font-size:17px}
+.cta p{color:#c7d2e0;font-size:13px;margin:0 0 12px}
+a.dugme{display:inline-block;background:#fff;color:#000;font-weight:600;text-decoration:none;padding:11px 16px;border-radius:10px}
+.foot{color:var(--mut);font-size:11px;margin-top:22px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GEO self-check — <domain>.pro</h1>
+  <p class="sub">Da li vas AI asistenti (ChatGPT, Gemini, Perplexity) mogu pročitati, razumjeti i citirati?</p>
+  <div class="uvod">10 pitanja, oko 60 sekundi. Odgovorite iskreno — alat računa skor i pokazuje šta prvo popraviti. Ništa se ne šalje na server: sve radi u vašem browseru.</div>
+  <form id="forma"></form>
+  <div class="row">
+    <button class="prim" id="dugme" type="button">Izračunaj skor</button>
+    <button id="reset" type="button" style="display:none">Počni ponovo</button>
+  </div>
+
+  <div id="rezultat">
+    <div class="card">
+      <div style="color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.07em">Vaš GEO skor</div>
+      <div class="skor" id="skorBroj">0</div>
+      <div style="color:var(--mut);font-size:12px;margin-top:2px">/ 100</div>
+      <div id="stubovi"></div>
+    </div>
+    <div class="card">
+      <strong>Šta prvo popraviti</strong>
+      <ul id="popravke"></ul>
+    </div>
+    <div class="row">
+      <button id="kopiraj" type="button">Kopiraj link sa rezultatom</button>
+      <span id="kopirano" style="display:none;color:var(--ok);align-self:center;font-size:13px">Kopirano ✓</span>
+    </div>
+    <div class="cta">
+      <h2>Želite da ovo popravim za vas?</h2>
+      <p>Pošaljite domen i dobijate audit u 48 h (49 €). Bez sastanaka — sve pisano, sa dokazima.</p>
+      <a class="dugme" id="ctaLink" href="#">Zatraži audit</a>
+    </div>
+  </div>
+
+  <div class="foot"><domain>.pro · GEO self-check · SR · radi bez servera i bez ključa</div>
+</div>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Da li vas AI asistenti (ChatGPT, Gemini, Perplexity) mogu pročitati, razumjeti i citirati?", "acceptedAnswer":{"@type":"Answer","text":"10 pitanja, oko 60 sekundi. Odgovorite iskreno — alat računa skor i pokazuje šta prvo popraviti. Ništa se ne šalje na server: sve radi u vašem browseru."}},
+ {"@type":"Question","name":"Kako se mjeri da li nas AI citira?", "acceptedAnswer":{"@type":"Answer","text":"Kroz tri mjerljive stvari: dolasci sa AI izvora (GA4), dolasci AI robota (Cloudflare: GPTBot, ClaudeBot, PerplexityBot) i strukturirani podaci koje model može da pročita. Prompt-mjerenje citata je poseban protokol."}]}
+]}
+</script>
+<script>
+(function(){
+  var PITANJA = [{"stub":"Čitljivost za mašine","t":"Stranica ima tačno jedan H1 i jasan naslov teme"},{"stub":"Čitljivost za mašine","t":"Canonical pokazuje na samu sebe (nema duplih adresa)"},{"stub":"Strukturirani podaci","t":"Postoji JSON-LD i on je VALIDAN (ne samo prisutan)"},{"stub":"Strukturirani podaci","t":"FAQ ili HowTo blok je označen kao structured data"},{"stub":"Jasnoća entiteta","t":"Ime firme, grad i djelatnost su eksplicitno napisani na strani"},{"stub":"Jasnoća entiteta","t":"Postoji sameAs veza (Google Business, LinkedIn, itd.)"},{"stub":"Gustina činjenica","t":"Stranica daje konkretne brojke: cijene, rokovi, rezultati"},{"stub":"Gustina činjenica","t":"Sadržaj je originalan (nije prepisan sa drugog sajta)"},{"stub":"AI pristup i vidljivost","t":"AI botovi (GPTBot, ClaudeBot, PerplexityBot) NISU blokirani u robots.txt"},{"stub":"AI pristup i vidljivost","t":"Mjeriš AI dolaske (GA4) i AI botove (Cloudflare) — znaš da li te čitaju"}];
+  var POPRAVKE = ["Dodaj jedan jasan H1 koji kaže šta strana nudi","Usmjeri canonical na tačnu adresu te strane","Dodaj validan JSON-LD (Organization + WebSite)","Dodaj FAQ blok sa FAQPage oznakom","Napiši ime firme, grad i djelatnost punom rečenicom","Poveži profile (sameAs: Google Business, LinkedIn)","Ubaci konkretne brojke: cijene, rokovi, rezultati","Zamijeni prepisan sadržaj originalnim","Otključaj AI botove u robots.txt (GPTBot, ClaudeBot, PerplexityBot)","Uvedi mjerenje: GA4 AI dolasci + Cloudflare AI botovi"];
+  var STUBOVI = ["Čitljivost za mašine","Strukturirani podaci","Jasnoća entiteta","Gustina činjenica","AI pristup i vidljivost"];
+  var forma = document.getElementById('forma');
+  PITANJA.forEach(function(p, i){
+    var l = document.createElement('label');
+    l.className = 'q';
+    l.innerHTML = '<input type="checkbox" data-i="' + i + '"><span><span class="stub">' + p.stub + '</span><span class="txt">' + p.t + '</span></span>';
+    forma.appendChild(l);
+  });
+
+  function bitovi(){ return Array.prototype.map.call(forma.querySelectorAll('input'), function(x){ return x.checked ? '1' : '0'; }).join(''); }
+  function skor(izbori){
+    var bodovi = izbori.split('').map(function(b){ return b === '1' ? 10 : 0; });
+    var ukupno = bodovi.reduce(function(a,b){ return a+b; }, 0);
+    var poStubu = {};
+    STUBOVI.forEach(function(s){ poStubu[s] = { ima: 0, max: 0 }; });
+    PITANJA.forEach(function(p, i){ poStubu[p.stub].max += 10; if (bodovi[i]) poStubu[p.stub].ima += 10; });
+    return { ukupno: ukupno, poStubu: poStubu, bodovi: bodovi };
+  }
+  function prikazi(izbori){
+    var r = skor(izbori);
+    document.getElementById('rezultat').style.display = 'block';
+    var el = document.getElementById('skorBroj');
+    el.textContent = String(r.ukupno);
+    el.className = 'skor ' + (r.ukupno >= 80 ? 'skok' : (r.ukupno >= 50 ? 'sosrednji' : 'slosije'));
+    var htmlStub = '';
+    STUBOVI.forEach(function(s){
+      var v = r.poStubu[s];
+      var proc = v.max ? Math.round(v.ima / v.max * 100) : 0;
+      htmlStub += '<div class="stubrow"><span>' + s + '</span><span>' + v.ima + ' / ' + v.max + '</span></div><div class="bar"><i style="width:' + proc + '%"></i></div>';
+    });
+    document.getElementById('stubovi').innerHTML = htmlStub;
+    var fale = [];
+    r.bodovi.forEach(function(b, i){ if (!b) fale.push(POPRAVKE[i]); });
+    document.getElementById('popravke').innerHTML = fale.length
+      ? fale.slice(0, 5).map(function(x){ return '<li>' + x + '</li>'; }).join('')
+      : '<li>' + "Sve je pokriveno — sljedeći korak je mjerenje AI citata kroz promptove." + '</li>';
+    var link = location.origin + location.pathname + '#s=' + izbori;
+    var naslov = 'GEO audit — ' + "<domain>.pro" + ' (score ' + r.ukupno + '/100)';
+    // \n u izlazu mora biti DVA znaka (escape), inače je novi red u JS stringu = sintaksna greška
+    var telo = 'Score: ' + r.ukupno + '/100\n\nResult link: ' + link + '\n\nFailing checks:\n' + fale.map(function(x){ return '- ' + x; }).join('\n');
+    var cta = "https://github.com/<github-user>/full-vidljivost-dokaz/issues/new";
+    document.getElementById('ctaLink').href = cta
+      ? (cta.indexOf('mailto:') === 0
+        ? cta + '?subject=' + encodeURIComponent(naslov) + '&body=' + encodeURIComponent(telo)
+        : cta + '?title=' + encodeURIComponent(naslov) + '&body=' + encodeURIComponent(telo))
+      : '#';
+    document.getElementById('dugme').style.display = 'none';
+    document.getElementById('reset').style.display = '';
+  }
+  document.getElementById('dugme').addEventListener('click', function(){
+    var b = bitovi();
+    history.replaceState(null, '', '#s=' + b);
+    prikazi(b);
+  });
+  document.getElementById('reset').addEventListener('click', function(){
+    forma.reset();
+    document.getElementById('rezultat').style.display = 'none';
+    document.getElementById('dugme').style.display = '';
+    document.getElementById('reset').style.display = 'none';
+    history.replaceState(null, '', location.pathname);
+  });
+  document.getElementById('kopiraj').addEventListener('click', function(){
+    var polje = document.createElement('input');
+    polje.value = location.href;
+    document.body.appendChild(polje);
+    polje.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(polje);
+    document.getElementById('kopirano').style.display = '';
+  });
+
+  // dijeljeni link: ako u adresi postoji #s=<bitovi>, odmah pokaži isti rezultat
+  var m = (location.hash || '').match(/s=([01]{10})/);
+  if (m) {
+    var polja = forma.querySelectorAll('input');
+    m[1].split('').forEach(function(b, i){ if (polja[i]) polja[i].checked = b === '1'; });
+    prikazi(m[1]);
+  }
+  window.__GEO_ALAT = { skor: skor, PITANJA: PITANJA.length };
+})();
+</script>
+</body>
+</html>

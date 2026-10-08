@@ -1,0 +1,12 @@
+# ovaj repo je JAVAN — ništa iz privatnog sistema ne smije ući
+.env
+.env.*
+*.key
+*.pem
+reports/
+data/
+logs/
+arhiva/
+backups/
+node_modules/
+*.db
